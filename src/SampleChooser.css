@@ -9,13 +9,13 @@
     margin: 1rem;
     border: 1px solid black;
     cursor: pointer;
-    opacity: 50%;
+    opacity: 0.5;
 }
 .SampleChooser .Option:hover {
-    opacity: 100%;
+    opacity: 1;
 }
 
 .SampleChooser .Option.selected {
-    opacity: 100%;
+    opacity: 1;
     border: 6px solid lightskyblue;
 }
