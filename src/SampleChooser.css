@@ -1,0 +1,21 @@
+.SampleChooser {
+    display: flex;
+    flex-direction: row;
+}
+
+.SampleChooser .Option {
+    height: 8rem;
+    width: 6rem;
+    margin: 1rem;
+    border: 1px solid black;
+    cursor: pointer;
+    opacity: 50%;
+}
+.SampleChooser .Option:hover {
+    opacity: 100%;
+}
+
+.SampleChooser .Option.selected {
+    opacity: 100%;
+    border: 6px solid lightskyblue;
+}

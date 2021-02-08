@@ -1,0 +1,15 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+}
+
+.Header h1 {
+    flex: 1;
+}
+
+.Header button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
