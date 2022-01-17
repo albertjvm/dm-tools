@@ -12,7 +12,8 @@ export const GridItem = ({
     children,
     gridConfig,
     onConfigChange,
-    forceEdit
+    forceEdit,
+    onDelete
 }) => {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const dragMode = useRef(null);
@@ -95,10 +96,6 @@ export const GridItem = ({
         handleDragStart(e);
     };
 
-    const handleDelete = () => {
-
-    };
-
     const config = () => dragMode.current === null ? gridConfig : editConfig;
 
     return (
@@ -123,7 +120,7 @@ export const GridItem = ({
                             <Icon name="times"/>
                         </IconButton>
                     }
-                    <IconButton requireConfirm confirmColor='red' onClick={() => console.log('confirmed')}>
+                    <IconButton className="GridItem--DeleteButton" requireConfirm confirmColor='red' onClick={onDelete}>
                         <Icon name="trash" />
                     </IconButton>
                 </div>

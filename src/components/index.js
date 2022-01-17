@@ -5,5 +5,7 @@ export * from './Home';
 export * from './Icon';
 export * from './IconButton';
 export * from './Initiative';
+export * from './Modal';
+export * from './PartyModal';
 export * from './TextInput';
 export * from './Toolbar';

@@ -1,0 +1,9 @@
+.PartyModal {
+    .PartyModal--Row {
+        display: flex;
+        flex-direction: row;
+        .TextInput input {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    }
+}

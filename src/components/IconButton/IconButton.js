@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './IconButton.scss';
 
 export const IconButton = ({
@@ -15,14 +15,21 @@ export const IconButton = ({
     const handleClick = () => {
         if (requireConfirm && !canConfirm) {
             setCanConfirm(true);
-            setTimeout(() => {
-                setCanConfirm(false);
-            }, 2000);
         } else {
             setCanConfirm(false);
             onClick();
         }
     };
+
+    useEffect(() => {
+        if (canConfirm) {
+            const timeout = setTimeout(() => {
+                setCanConfirm(false);
+            }, 2000);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [canConfirm]);
 
     return (
         <div

@@ -2,13 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import './Home.css';
 import { Grid, GridItem } from '../../components';
-import { AuthContext } from '../../context';
+import { AuthContext, ModalContext } from '../../context';
 import { Toolbar } from '../Toolbar';
 import { updateWidgetConfig } from '../../db';
 import { Initiative } from '../Initiative';
+import { Modal } from '../Modal';
+import { PartyModal } from '../PartyModal';
 
 export const Home = () => {
     const { isLoggedIn, user } = useContext(AuthContext);
+    const { activeModal, MODALS } = useContext(ModalContext);
     const [widgets, setWidgets] = useState([]);
     const [editAll, setEditAll] = useState(false);
 
@@ -31,6 +34,14 @@ export const Home = () => {
         }
     }, [isLoggedIn, user]);
 
+    const deleteWidget = (id) => {
+        firebase
+            .firestore()
+            .collection('widgets')
+            .doc(id)
+            .delete();
+    };
+
     const renderWidget = (type, data, id) => {
         switch(type) {
             case 'iframe':
@@ -39,6 +50,15 @@ export const Home = () => {
                 return <Initiative id={id} current={data?.current} />
             default:
                 return <div />
+        }
+    };
+
+    const renderModal = () => {
+        switch(activeModal) {
+            case MODALS.PARTY:
+                return <PartyModal />
+            default:
+                return null;
         }
     };
 
@@ -56,6 +76,7 @@ export const Home = () => {
                                         gridConfig={config}
                                         onConfigChange={(newConfig) => {updateWidgetConfig(id, newConfig)}}
                                         forceEdit={editAll}
+                                        onDelete={() => deleteWidget(id)}
                                     >
                                         {renderWidget(type, data, id)}
                                     </GridItem>
@@ -63,6 +84,7 @@ export const Home = () => {
                             }
                         </Grid>
                     </div>
+                    {renderModal()}
                 </>
             : null}
         </>

@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Dropdown, Icon, IconButton } from '..';
 import { createNewWidget } from '../../db';
+import { ModalContext } from '../../context';
 import './Toolbar.scss';
 
 export const Toolbar = ({ toggleEditAll, editAll }) => {
+    const { setActiveModal, MODALS } = useContext(ModalContext);
     const [dropdownOpen, setDopdownOpen] = useState(false);
 
     const createDiceTable = () => {
@@ -43,6 +45,7 @@ export const Toolbar = ({ toggleEditAll, editAll }) => {
             <IconButton onClick={toggleEditAll} toggled={editAll} >
                 <Icon name="clone" color={editAll ? 'rgba(0,0,0, .5)' : 'white'} />
             </IconButton>
+            <IconButton onClick={() => {setActiveModal(MODALS.PARTY)}}><Icon name="users" /></IconButton>
         </div>
     );
 }

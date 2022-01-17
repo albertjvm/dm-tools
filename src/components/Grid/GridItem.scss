@@ -19,8 +19,8 @@
         box-sizing: border-box;
         top: 0;
         left: 0;
-        min-width: 150px;
-        min-height: 200px;
+        min-width: 10vw;
+        min-height: 10vw;
         background: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(10px);
         padding: 8px;
@@ -45,6 +45,12 @@
             position: absolute;
             top: 8px;
             right: 8px;
+        }
+
+        .GridItem--DeleteButton {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
         }
     }
 

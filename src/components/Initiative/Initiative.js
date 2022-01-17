@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import { Icon, IconButton } from '..';
 import './Initiative.scss';
 import { InitiativeItem } from '.';
+import { PartyContext } from '../../context';
 
 export const Initiative = ({id, current = null}) => {
+    const { party } = useContext(PartyContext);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -38,6 +40,30 @@ export const Initiative = ({id, current = null}) => {
         });
     };
 
+    const addParty = () => {
+        const collection = firebase.firestore().collection('initiativeItems');
+
+        party.forEach(({name}) => {
+            collection.add({
+                name,
+                value: 0,
+                widgetId: id
+            }).then(docRef => {
+                if (!current) {
+                    firebase.firestore().collection('widgets').doc(id).update({
+                        current: docRef.id
+                    })
+                }
+            });
+        });
+    };
+
+    const deleteAll = () => {
+        items.forEach(({id}) => {
+            firebase.firestore().collection('initiativeItems').doc(id).delete();
+        });
+    };
+
     const advance = () => {
         firebase.firestore().collection('widgets').doc(id).update({
             current: orderedItems()[1].id
@@ -64,6 +90,8 @@ export const Initiative = ({id, current = null}) => {
                 <IconButton onClick={advance}><Icon name="angle-double-right" /></IconButton>
                 <div style={{flex: 1}} />
                 <IconButton onClick={addItem}><Icon name="plus" /></IconButton>
+                <IconButton onClick={addParty}><Icon name="users" /></IconButton>
+                <IconButton onClick={deleteAll} requireConfirm><Icon name="trash" /></IconButton>
             </div>
         </div>
     );
