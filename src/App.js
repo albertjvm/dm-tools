@@ -1,36 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import firebase from 'firebase/app';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './Header';
-import SampleChooser from './SampleChooser';
+import { Header, Home } from './components';
+import { AuthProvider } from './context/AuthContext';
 
 const App = () => {
-
-  const [user, setUser] = useState(null);
-
-  const isLoggedIn = () => (user != null);
-
-  useEffect(() => {
-    firebase.auth()
-      .getRedirectResult()
-      .then((result) => {
-        if (result.user != null) {
-          setUser(result.user.toJSON());
-        } else if (firebase.auth().currentUser != null) {
-          setUser(firebase.auth().currentUser);
-        }
-      }).catch((error) => {
-    
-      });
-  }, []);
-
   return (
-    <>
-      <Header user={user} setUser={setUser} />
-      <div className="App">
-        {isLoggedIn() ? <SampleChooser /> : null}
-      </div>
-    </>
+    <AuthProvider>
+      <main className="App">
+        <Header />
+        <Switch>
+          <Route path="/" exact render={(props) => (
+            <Home {...props} />
+          )} />
+        </Switch>
+      </main>
+    </AuthProvider>
   );
 }
 

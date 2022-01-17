@@ -16,7 +16,7 @@ export const SampleChooser = () => {
         const response = getChoice();
         if (response) {
             response.then(result => {
-                setSelected(result.data().choice);
+                setSelected(result.data()?.choice);
             });
         }
     });

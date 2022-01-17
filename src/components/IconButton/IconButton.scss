@@ -1,0 +1,26 @@
+.IconButton {
+    cursor: pointer;
+    background-color: rgba(0,0,0, .2);
+    padding: 0;
+    border-radius: 20px;
+    border: none;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 35px;
+    width: 35px;
+
+    &:hover {
+        background-color: rgba(0,0,0, .5);
+    }
+
+    &.toggled {
+        .Icon {
+            color: rgba(0,0,0, .2);
+        }
+        background-color: white;
+    }
+}
