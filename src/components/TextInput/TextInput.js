@@ -5,7 +5,8 @@ export const TextInput = ({
     placeholder,
     type = "text",
     value,
-    onChange,
+    onBlur = () => {},
+    onChange = () => {},
     onEnter,
     className = ''
 }) => {
@@ -22,6 +23,7 @@ export const TextInput = ({
                 placeholder={placeholder}
                 value={value}
                 onChange={e => onChange(e.target.value)}
+                onBlur={e => onBlur(e.target.value)}
                 onKeyPress={handleKeyPress}
             />
         </div>
