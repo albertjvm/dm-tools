@@ -1,0 +1,22 @@
+.Table {
+    .Table--HeaderRow, .Table--DataRow {
+        display: flex;
+        flex-direction: row;
+
+        .Table--HeaderCell, .Table--ActionHeader {
+            text-align: center;
+            font-variant: small-caps;
+        }
+
+        .Table--HeaderCell, .Table--DataCell {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .Table--ActionCell {
+            width: 40px;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

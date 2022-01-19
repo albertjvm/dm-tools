@@ -22,8 +22,8 @@ export const TextInput = ({
                 type={type}
                 placeholder={placeholder}
                 value={value}
-                onChange={e => onChange(e.target.value)}
-                onBlur={e => onBlur(e.target.value)}
+                onChange={e => onChange(type === 'number' ? parseInt(e.target.value) || 0 : e.target.value)}
+                onBlur={e => onBlur(type === 'number' ? parseInt(e.target.value) || 0 : e.target.value)}
                 onKeyPress={handleKeyPress}
             />
         </div>

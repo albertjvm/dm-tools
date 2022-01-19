@@ -25,7 +25,7 @@ export const InitiativeItem = ({ id, name, value }) => {
                 type="number"
                 onChange={setTempValue} 
                 onBlur={value => {
-                    updateItem({key: 'value', value });
+                    updateItem({key: 'value', value: parseInt(value) });
                     setTempValue(null);
                 }} 
             />

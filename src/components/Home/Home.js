@@ -6,12 +6,11 @@ import { AuthContext, ModalContext } from '../../context';
 import { Toolbar } from '../Toolbar';
 import { updateWidgetConfig } from '../../db';
 import { Initiative } from '../Initiative';
-import { Modal } from '../Modal';
 import { PartyModal } from '../PartyModal';
 
 export const Home = () => {
     const { isLoggedIn, user } = useContext(AuthContext);
-    const { activeModal, MODALS } = useContext(ModalContext);
+    const { modalStack } = useContext(ModalContext);
     const [widgets, setWidgets] = useState([]);
     const [editAll, setEditAll] = useState(false);
 
@@ -53,15 +52,6 @@ export const Home = () => {
         }
     };
 
-    const renderModal = () => {
-        switch(activeModal) {
-            case MODALS.PARTY:
-                return <PartyModal />
-            default:
-                return null;
-        }
-    };
-
     return (
         <>
             {isLoggedIn ? 
@@ -84,7 +74,7 @@ export const Home = () => {
                             }
                         </Grid>
                     </div>
-                    {renderModal()}
+                    {modalStack}
                 </>
             : null}
         </>

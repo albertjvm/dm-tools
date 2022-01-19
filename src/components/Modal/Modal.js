@@ -3,10 +3,11 @@ import { ModalContext } from '../../context';
 import './Modal.scss';
 
 export const Modal = ({children, className}) => {
-    const {setActiveModal, MODALS} = useContext(ModalContext);
+    const { popModal } = useContext(ModalContext);
 
-    const handleWrapperClick = () => {
-        setActiveModal(MODALS.NONE);
+    const handleWrapperClick = (e) => {
+        e.stopPropagation();
+        popModal();
     };
 
     const handleModalClick= (e) => {

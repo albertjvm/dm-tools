@@ -27,9 +27,12 @@ export const PartyProvider = ({ children }) => {
         }
     }, [user]);
 
+    const member = (id) => party.find(p => p.id === id);
+
     return (
         <PartyContext.Provider value={{ 
-            party
+            party,
+            member
          }}>
              {children}
         </PartyContext.Provider>

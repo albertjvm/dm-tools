@@ -31,12 +31,6 @@ export const Initiative = ({id, current = null}) => {
             name: 'test',
             value: 0,
             widgetId: id
-        }).then(docRef => {
-            if (!current) {
-                firebase.firestore().collection('widgets').doc(id).update({
-                    current: docRef.id
-                })
-            }
         });
     };
 
@@ -48,12 +42,6 @@ export const Initiative = ({id, current = null}) => {
                 name,
                 value: 0,
                 widgetId: id
-            }).then(docRef => {
-                if (!current) {
-                    firebase.firestore().collection('widgets').doc(id).update({
-                        current: docRef.id
-                    })
-                }
             });
         });
     };
@@ -62,11 +50,14 @@ export const Initiative = ({id, current = null}) => {
         items.forEach(({id}) => {
             firebase.firestore().collection('initiativeItems').doc(id).delete();
         });
+        firebase.firestore().collection('widgets').doc(id).update({
+            current: firebase.firestore.FieldValue.delete()
+        });
     };
 
     const advance = () => {
         firebase.firestore().collection('widgets').doc(id).update({
-            current: orderedItems()[1].id
+            current: current ? orderedItems()[1].id : orderedItems()[0].id
         })
     };
 
@@ -75,16 +66,25 @@ export const Initiative = ({id, current = null}) => {
             v2 - v1 || n1.localeCompare(n2)
         ));
         const currentIndex = sorted.findIndex(({id}) => id === current);
-        return [
-            ...sorted.slice(currentIndex),
-            ...sorted.slice(0, currentIndex)
-        ];
+
+        if(currentIndex === -1) {
+            return sorted;
+        } else {
+           return [
+                ...sorted.slice(currentIndex),
+                ...sorted.slice(0, currentIndex)
+            ];
+        }
     };
+
+    const displayItems = () => (
+        current ? orderedItems() : items
+    );
 
     return (
         <div className="Initiative">
             <div className="Initiative--Main">
-                {orderedItems().map(({...item}, i) => <InitiativeItem key={`ii-${i}`} {...item} />)}
+                {displayItems().map(({...item}, i) => <InitiativeItem key={`ii-${i}`} {...item} />)}
             </div>
             <div className="Initiative--Footer">
                 <IconButton onClick={advance}><Icon name="angle-double-right" /></IconButton>
