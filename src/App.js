@@ -12,7 +12,7 @@ const App = () => {
         <ModalProvider>
           <PartyProvider>
             <main className="App">
-              {/* <Header /> */}
+              <Header />
               <Switch>
                 <Route path="/" exact render={(props) => (
                   <Home {...props} />

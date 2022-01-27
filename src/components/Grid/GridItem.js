@@ -2,7 +2,7 @@ import './GridItem.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Icon, IconButton } from '..';
 
-const yOffset = 50;
+const yOffset = 100;
 const DRAG_MODE = {
     MOVE: 'MOVE',
     EXPAND: 'EXPAND',
