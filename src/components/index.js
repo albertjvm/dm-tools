@@ -1,4 +1,6 @@
+export * from './DamageTracker';
 export * from './Dropdown';
+export * from './FeatsModal';
 export * from './Grid';
 export * from './Header';
 export * from './Home';
@@ -7,6 +9,7 @@ export * from './IconButton';
 export * from './Initiative';
 export * from './Modal';
 export * from './PartyModal';
+export * from './PartySearch';
 export * from './SavingThrowsModal';
 export * from './SkillsModal';
 export * from './Table';

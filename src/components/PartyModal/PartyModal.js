@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import firebase from 'firebase/app';
-import { Icon, IconButton, Modal, SavingThrowsModal, SkillsModal, Table, TextInput, VitalsModal } from '..';
+import { FeatsModal, Icon, IconButton, Modal, SavingThrowsModal, SkillsModal, Table, TextInput, VitalsModal } from '..';
 import './PartyModal.scss';
 import { AuthContext, ModalContext, PartyContext } from '../../context';
 import { ABILITIES } from '../../data';
@@ -40,6 +40,15 @@ export const PartyModal = () => {
         )
     });
 
+    const handleFeatsClick = ({id, name}) => {
+        pushModal(
+            <FeatsModal 
+                key={`feats-${name}`}
+                id={id}
+            />
+        );
+    };
+
     const handleSavesClick = ({id, name}) => {
         pushModal(
             <SavingThrowsModal 
@@ -76,11 +85,15 @@ export const PartyModal = () => {
                     { icon: 'heartbeat', title: 'Vitals', onClick: handleVitalsClick },
                     { icon: 'running', title: 'Skills', onClick: handleSkillsClick },
                     { icon: 'save', title: 'Saves', onClick: handleSavesClick },
+                    { icon: 'trophy', title: 'Feats', onClick: handleFeatsClick },
                     { icon: 'trash', requireConfirm: true, onClick: ({id}) => deletePartyMember(id) }
                 ]}
                 columns={[
                     { name: 'name', flex: 2, render: ({id, name}) => (
                         <TextInput value={name} onChange={value => updatePartyMember({id, key: 'name', value})}/>
+                    )},
+                    { name: 'level', render: ({id, level = 1}) => (
+                        <TextInput value={level} type="number" onChange={value => updatePartyMember({id, key: 'level', value})}/>
                     )},
                     ...ABILITIES.map(({shortName}) => abilityColumn(shortName))
                 ]}

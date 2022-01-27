@@ -4,9 +4,9 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* background: linear-gradient(0deg, rgb(141, 250, 145) 0%, rgb(18, 126, 18) 60%, rgb(54, 89, 5) 100%); */
-  background-image: url(https://1.bp.blogspot.com/-SZgWYG73ONI/Wmu4TmWrDRI/AAAAAAAAGJU/0bn7FVW6rZsQi-Lz8oiXWyP0HG4SjghkACLcBGAs/s1600/314126%2B-%2BDinosaur%2BRace.jpg);
+  /* background-color: linear-gradient(20deg, rgb(141, 250, 145) 0%, rgb(18, 126, 18) 60%, rgb(54, 89, 5) 100%); */
+  /* background-image: url(https://1.bp.blogspot.com/-SZgWYG73ONI/Wmu4TmWrDRI/AAAAAAAAGJU/0bn7FVW6rZsQi-Lz8oiXWyP0HG4SjghkACLcBGAs/s1600/314126%2B-%2BDinosaur%2BRace.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
 }

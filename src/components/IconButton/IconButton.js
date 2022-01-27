@@ -17,7 +17,7 @@ export const IconButton = ({
             setCanConfirm(true);
         } else {
             setCanConfirm(false);
-            onClick();
+            onClick && onClick();
         }
     };
 

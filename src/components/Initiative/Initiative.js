@@ -28,7 +28,7 @@ export const Initiative = ({id, current = null}) => {
 
     const addItem = () => {
         firebase.firestore().collection('initiativeItems').add({
-            name: 'test',
+            name: 'NEW',
             value: 0,
             widgetId: id
         });
@@ -63,7 +63,7 @@ export const Initiative = ({id, current = null}) => {
 
     const orderedItems = () => {
         const sorted = items.sort(({value: v1, name: n1}, {value: v2, name: n2}) => (
-            v2 - v1 || n1.localeCompare(n2)
+            v2 - v1 || 0
         ));
         const currentIndex = sorted.findIndex(({id}) => id === current);
 

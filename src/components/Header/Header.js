@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import firebase from 'firebase/app';
 import './Header.css';
 import { AuthContext } from '../../context';
-import { Link } from 'react-router-dom';
 import { Icon, IconButton } from '..';
 
 export const Header = () => {
