@@ -15,4 +15,5 @@ export * from './SkillsModal';
 export * from './Table';
 export * from './TextInput';
 export * from './Toolbar';
+export * from './Tooltip';
 export * from './VitalsModal';

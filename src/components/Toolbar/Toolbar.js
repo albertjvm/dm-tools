@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Dropdown, Icon, IconButton, PartyModal } from '..';
+import { Dropdown, Icon, IconButton, PartyModal, Tooltip } from '..';
 import { createNewWidget } from '../../db';
 import { ModalContext } from '../../context';
 import './Toolbar.scss';
@@ -48,21 +48,29 @@ export const Toolbar = ({ toggleEditAll, editAll }) => {
 
     return (
         <div className="Toolbar">
-            <IconButton onClick={()=> {setDopdownOpen(o => !o)}}>
-                <Icon name="plus" />
-                <Dropdown open={dropdownOpen}>
-                    <IconButton title="DiceTable" onClick={createDiceTable}><Icon name="dice-d20" /></IconButton>
-                    <IconButton title="Initiative" onClick={() => createWidget('initiative')}><Icon name="sort-amount-down-alt" /></IconButton>
-                    <IconButton title="Party Search" onClick={() => createWidget('partysearch')}><Icon name="users" /></IconButton>
-                    <IconButton title="Damage Tracker" onClick={() => createWidget('damagetracker')}><Icon name="skull-crossbones" /></IconButton>
-                </Dropdown>
-            </IconButton>
-            <IconButton onClick={toggleEditAll} toggled={editAll} >
-                <Icon name="clone" color={editAll ? 'rgba(0,0,0, .5)' : 'white'} />
-            </IconButton>
-            <IconButton onClick={handlePartyClick}><Icon name="users" /></IconButton>
+            <Tooltip content="Add a widget" direction='right'>
+                <IconButton onClick={()=> {setDopdownOpen(o => !o)}}>
+                    <Icon name="plus" />
+                </IconButton>
+            </Tooltip>
+            <Dropdown open={dropdownOpen}>
+                <IconButton onClick={createDiceTable}><Icon name="dice-d20" />&nbsp;Dice Table</IconButton>
+                <IconButton title="Initiative" onClick={() => createWidget('initiative')}><Icon name="sort-amount-down-alt" />&nbsp;Initiative</IconButton>
+                <IconButton title="Party Search" onClick={() => createWidget('partysearch')}><Icon name="users" />&nbsp;Party Search</IconButton>
+                <IconButton title="Damage Tracker" onClick={() => createWidget('damagetracker')}><Icon name="skull-crossbones" />&nbsp;Damage Tracker</IconButton>
+            </Dropdown>
+            <Tooltip content="Edit Layout" direction='right'>
+                <IconButton onClick={toggleEditAll} toggled={editAll} >
+                    <Icon name="clone" color={editAll ? 'rgba(0,0,0, .5)' : 'white'} />
+                </IconButton>
+            </Tooltip>
+            <Tooltip content="Configure Party" direction='right'>
+                <IconButton onClick={handlePartyClick}><Icon name="users" /></IconButton>
+            </Tooltip>
             <div style={{flex: 1}} />
-            <IconButton onClick={handleSettingsClick}><Icon name="cog" /></IconButton>
+            <Tooltip content="Settings" direction='left'>
+                <IconButton onClick={handleSettingsClick}><Icon name="cog" /></IconButton>
+            </Tooltip>
         </div>
     );
 }

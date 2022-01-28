@@ -8,7 +8,8 @@ export const TextInput = ({
     onBlur = () => {},
     onChange = () => {},
     onEnter,
-    className = ''
+    className = '',
+    selectOnFocus = false
 }) => {
     const handleKeyPress = e => {
         if (e.key === "Enter") {
@@ -25,6 +26,11 @@ export const TextInput = ({
                 onChange={e => onChange(type === 'number' ? parseInt(e.target.value) || 0 : e.target.value)}
                 onBlur={e => onBlur(type === 'number' ? parseInt(e.target.value) || 0 : e.target.value)}
                 onKeyPress={handleKeyPress}
+                onFocus={e => {
+                    if (selectOnFocus) {
+                        e.target.select();
+                    }
+                }}
             />
         </div>
     );
