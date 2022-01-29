@@ -20,6 +20,7 @@ export const Toolbar = ({ toggleEditAll, editAll }) => {
             },
             url: 'https://dice-table.albertjvm.ca/'
         });
+        setDopdownOpen(false);
     };
 
     const createWidget = (type) => {
@@ -32,6 +33,7 @@ export const Toolbar = ({ toggleEditAll, editAll }) => {
                 colSpan: 2
             }
         });
+        setDopdownOpen(false);
     };
 
     const handlePartyClick = () => {

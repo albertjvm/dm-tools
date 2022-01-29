@@ -28,7 +28,7 @@ export const WordGenerator = ({id, count}) => {
             </main>
             <footer>
                 <IconButton onClick={handleClick}><Icon name="dice-d20" /></IconButton>
-                <TextInput type="number" placeholder="#" value={count} onChange={handleChange} />
+                <TextInput type="number" placeholder="#" min="1" value={count} onChange={handleChange} />
             </footer>
         </div>
     );

@@ -45,11 +45,17 @@ const randomVowel = () => (
     )
 );
 
-export const generateWord = (sylables = randomLength()) => (
-    new Array(sylables).fill('')
-        .map(_ => randomFromList(SYLLABLE_TYPES)).join('').split('')
+export const generateWord = (sylables = randomLength()) => {
+    let template = new Array(sylables).fill('')
+        .map(_ => randomFromList(SYLLABLE_TYPES)).join('');
+        
+    if (!template.includes('C')) {
+        template = `C${template}`;
+    }
+
+    return template.split('')
         .map(x => x
             .replaceAll('C', randomConsonent())
             .replaceAll('V', randomVowel())
         ).join('')
-);
+};

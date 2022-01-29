@@ -9,7 +9,8 @@ export const TextInput = ({
     onChange = () => {},
     onEnter,
     className = '',
-    selectOnFocus = false
+    selectOnFocus = false,
+    ...rest
 }) => {
     const handleKeyPress = e => {
         if (e.key === "Enter") {
@@ -31,6 +32,7 @@ export const TextInput = ({
                         e.target.select();
                     }
                 }}
+                {...rest}
             />
         </div>
     );
