@@ -43,7 +43,7 @@ export const PartySearch = ({ id, activeSearch = '' }) => {
             if (ability) {
                 return {
                     title: ability.name, 
-                    getSearchValue: member => member.abilities[ability.shortName]
+                    getSearchValue: member => member?.abilities ? member.abilities[ability.shortName] : '-'
                 };
             }
 
@@ -52,11 +52,13 @@ export const PartySearch = ({ id, activeSearch = '' }) => {
                 return {
                     title: skill.name, 
                     getSearchValue: member => {
-                        const prof = member.skills[skill.name] || 0;
+                        if (!member?.skills) return '-';
+                        const prof = member?.skills[skill.name] || 0;
                         const mod = scoreToMod(member.abilities[skill.ability], prof, member.level);
                         return `${mod < 0 ? mod : `+${mod}`}${new Array(prof).fill('*').join('')}`;
                     },
                     getSortValue: member => {
+                        if (!member?.skills) return -99;
                         const prof = member.skills[skill.name] || 0;
                         return scoreToMod(member.abilities[skill.ability], prof, member.level);
                     }
@@ -70,11 +72,13 @@ export const PartySearch = ({ id, activeSearch = '' }) => {
                     return {
                         title: `${ability.name} save`, 
                         getSearchValue: member => {
+                            if (!member?.saves) return '-';
                             const prof = member.saves[ability.shortName] || 0;
                             const mod = scoreToMod(member.abilities[ability.shortName], prof, member.level);
                             return `${mod < 0 ? mod : `+${mod}`}${new Array(prof).fill('*').join('')}`;
                         },
                         getSortValue: member => {
+                            if (!member?.saves) return -99;
                             const prof = member.saves[ability.shortName] || 0;
                             return scoreToMod(member.abilities[ability.shortName], prof, member.level);
                         }
@@ -87,6 +91,7 @@ export const PartySearch = ({ id, activeSearch = '' }) => {
                     return {
                         title: `passive ${skill.name}`, 
                         getSearchValue: member => {
+                            if (!member?.skills) return '-';
                             const prof = member.skills[skill.name] || 0;
                             let mod = scoreToMod(member.abilities[skill.ability], prof, member.level);
                             if ((member.feats || []).includes('observant') && ['perception', 'investigation'].includes(skill.name)) {
