@@ -9,7 +9,7 @@ import { WordGenerator } from '../WordGenerator';
 export const Home = () => {
     const { isLoggedIn, user } = useContext(AuthContext);
     const { modalStack } = useContext(ModalContext);
-    const { settings } = useContext(SettingsContext);
+    const { settings = {} } = useContext(SettingsContext);
     const [widgets, setWidgets] = useState([]);
     const [editAll, setEditAll] = useState(false);
 
@@ -58,7 +58,7 @@ export const Home = () => {
     };
 
     const backgroundStyle = () => {
-        const { backgroundType, color1, color2, imageUrl } = settings;
+        const { backgroundType = 'color', color1 = 'black', color2 = '#345', imageUrl } = settings;
 
         if (backgroundType === 'color') {
             return {
