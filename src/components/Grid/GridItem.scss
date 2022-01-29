@@ -36,6 +36,12 @@
             flex-direction: row;
         }
 
+        .GridItem--MoveHandle {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+
         .GridItem--ExpandHandle {
             position: absolute;
             bottom: 8px;

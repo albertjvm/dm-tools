@@ -17,3 +17,4 @@ export * from './TextInput';
 export * from './Toolbar';
 export * from './Tooltip';
 export * from './VitalsModal';
+export * from './WordGenerator';

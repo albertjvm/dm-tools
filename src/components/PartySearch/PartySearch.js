@@ -7,7 +7,7 @@ import './PartySearch.scss';
 
 const VITALS = ['hp', 'ac', 'weight', 'level'];
 
-export const PartySearch = ({ id, activeSearch }) => {
+export const PartySearch = ({ id, activeSearch = '' }) => {
     const [tokens, setTokens] = useState([]);
     const [sort, setSort] = useState(false);
     const { party } = useContext(PartyContext);

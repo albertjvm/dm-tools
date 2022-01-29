@@ -1,6 +1,6 @@
 import './GridItem.scss';
 import { useEffect, useRef, useState } from 'react';
-import { Icon, IconButton } from '..';
+import { Icon, IconButton, Tooltip } from '..';
 
 const yOffset = 100;
 const DRAG_MODE = {
@@ -109,20 +109,31 @@ export const GridItem = ({
             {children}
             {(forceEdit || isEditOpen) &&
                 <div className="GridItem--EditPanel">
-                    <IconButton onMouseDown={handleStartMove}>
-                        <Icon name="arrows-alt"/>
-                    </IconButton>
-                    <IconButton className="GridItem--ExpandHandle" onMouseDown={handleStartExpand}>
-                        <Icon name="expand-arrows-alt"/>
-                    </IconButton>
-                    { isEditOpen && 
-                        <IconButton className="GridItem--CloseButton" onClick={handleCancelEdit}>
-                            <Icon name="times"/>
+                    <Tooltip content="Move Widget" className="GridItem--MoveHandle" direction='right'>
+                        <IconButton onMouseDown={handleStartMove}>
+                            <Icon name="arrows-alt"/>
                         </IconButton>
+                    </Tooltip>
+
+                    <Tooltip content="Expand Widget" className="GridItem--ExpandHandle" direction='left'>
+                        <IconButton onMouseDown={handleStartExpand}>
+                            <Icon name="expand-arrows-alt"/>
+                        </IconButton>
+                    </Tooltip>
+
+                    { isEditOpen && 
+                        <Tooltip content="Close Edit" className="GridItem--CloseButton" direction='left'>
+                            <IconButton onClick={handleCancelEdit}>
+                                <Icon name="times"/>
+                            </IconButton>
+                        </Tooltip>
                     }
-                    <IconButton className="GridItem--DeleteButton" requireConfirm confirmColor='red' onClick={onDelete}>
-                        <Icon name="trash" />
-                    </IconButton>
+
+                    <Tooltip content="Delete Widget" className="GridItem--DeleteButton" direction='right'>
+                        <IconButton requireConfirm confirmColor='red' onClick={onDelete}>
+                            <Icon name="trash" />
+                        </IconButton>
+                    </Tooltip>
                 </div>
             }
         </div>

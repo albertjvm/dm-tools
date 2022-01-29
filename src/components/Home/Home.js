@@ -4,6 +4,7 @@ import './Home.scss';
 import { DamageTracker, Grid, GridItem, Initiative, Toolbar, PartySearch } from '../../components';
 import { AuthContext, ModalContext, SettingsContext } from '../../context';
 import { updateWidgetConfig } from '../../db';
+import { WordGenerator } from '../WordGenerator';
 
 export const Home = () => {
     const { isLoggedIn, user } = useContext(AuthContext);
@@ -49,6 +50,8 @@ export const Home = () => {
                 return <PartySearch id={id} activeSearch={data?.activeSearch} />
             case 'damagetracker':
                 return <DamageTracker id={id} />
+            case 'wordgenerator':
+                return <WordGenerator id={id} count={data?.count} />
             default:
                 return <div />
         }
