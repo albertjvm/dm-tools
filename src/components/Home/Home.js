@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import './Home.scss';
-import { DamageTracker, Grid, GridItem, Initiative, Toolbar, PartySearch } from '../../components';
+import { Grid, GridItem, Toolbar } from '../../components';
+import { Widget } from '../../components/widgets';
 import { AuthContext, ModalContext, SettingsContext } from '../../context';
 import { updateWidgetConfig } from '../../db';
-import { WordGenerator } from '../WordGenerator';
 
 export const Home = () => {
     const { isLoggedIn, user } = useContext(AuthContext);
@@ -40,23 +40,6 @@ export const Home = () => {
             .delete();
     };
 
-    const renderWidget = (type, data, id) => {
-        switch(type) {
-            case 'iframe':
-                return <iframe src={data.url} title={data.url}></iframe>
-            case 'initiative':
-                return <Initiative id={id} current={data?.current} />
-            case 'partysearch':
-                return <PartySearch id={id} activeSearch={data?.activeSearch} />
-            case 'damagetracker':
-                return <DamageTracker id={id} />
-            case 'wordgenerator':
-                return <WordGenerator id={id} count={data?.count} />
-            default:
-                return <div />
-        }
-    };
-
     const backgroundStyle = () => {
         const { backgroundType = 'color', color1 = 'black', color2 = '#345', imageUrl } = settings;
 
@@ -79,7 +62,7 @@ export const Home = () => {
                         <Toolbar editAll={editAll} toggleEditAll={() => setEditAll(v => !v)} />
                         <Grid>
                             {
-                                widgets.map(({id, type, config, ...data}, i) => (
+                                widgets.map(({id, name, type, config, ...data}, i) => (
                                     <GridItem
                                         key={`${type}-${i}`}
                                         gridConfig={config}
@@ -87,7 +70,7 @@ export const Home = () => {
                                         forceEdit={editAll}
                                         onDelete={() => deleteWidget(id)}
                                     >
-                                        {renderWidget(type, data, id)}
+                                        <Widget id={id} type={type} name={name} data={data} />
                                     </GridItem>
                                 ))
                             }

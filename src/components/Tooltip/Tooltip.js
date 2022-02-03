@@ -18,13 +18,13 @@ export const Tooltip = ({ children, className, content, delay = 400, direction =
 
     return (
         <div
-            className={`Tooltip--Wrapper ${className}`}
+            className={`Tooltip-Wrapper ${className}`}
             onMouseEnter={showTip}
             onMouseLeave={hideTip}
         >
             {children}
             { active && (
-                <div className={`Tooltip--Tip ${direction}`}>
+                <div className={`Tooltip-Tip ${direction}`}>
                     {content}
                 </div>
             )}

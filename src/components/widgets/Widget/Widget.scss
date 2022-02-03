@@ -1,0 +1,49 @@
+.Widget {
+    display: flex;
+    flex-direction: column;
+
+    & > *:not(header) {
+        flex: 1;
+    }
+
+    .Widget-Header {
+        box-sizing: border-box;
+        cursor: pointer;
+        height: 50px;
+        background-color: rgba(white, 0.4);
+        backdrop-filter: blur(10%);
+        transition: height .3s;
+        padding: 8px;
+
+        &.collapsed {
+            height: 15px;
+        }
+
+        .Widget-Name--Edit {
+
+        }
+
+        .Widget-Name--Display {
+            width: fit-content;
+            font-size: xx-large;
+            margin: 0;
+            color: white;
+            &:hover {
+                color: rgba($color: white, $alpha: .5);
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+
+        padding: 8px;
+        background-color: rgba(255,255,255,.4);
+        backdrop-filter: blur(10px);
+
+        .IconButton {
+            margin-right: 8px;
+        }
+    }
+}

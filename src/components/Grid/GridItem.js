@@ -108,28 +108,28 @@ export const GridItem = ({
         >
             {children}
             {(forceEdit || isEditOpen) &&
-                <div className="GridItem--EditPanel">
-                    <Tooltip content="Move Widget" className="GridItem--MoveHandle" direction='right'>
+                <div className="GridItem-EditPanel">
+                    <Tooltip content="Move Widget" className="GridItem-MoveHandle" direction='right'>
                         <IconButton onMouseDown={handleStartMove}>
                             <Icon name="arrows-alt"/>
                         </IconButton>
                     </Tooltip>
 
-                    <Tooltip content="Expand Widget" className="GridItem--ExpandHandle" direction='left'>
+                    <Tooltip content="Expand Widget" className="GridItem-ExpandHandle" direction='left'>
                         <IconButton onMouseDown={handleStartExpand}>
                             <Icon name="expand-arrows-alt"/>
                         </IconButton>
                     </Tooltip>
 
                     { isEditOpen && 
-                        <Tooltip content="Close Edit" className="GridItem--CloseButton" direction='left'>
+                        <Tooltip content="Close Edit" className="GridItem-CloseButton" direction='left'>
                             <IconButton onClick={handleCancelEdit}>
                                 <Icon name="times"/>
                             </IconButton>
                         </Tooltip>
                     }
 
-                    <Tooltip content="Delete Widget" className="GridItem--DeleteButton" direction='right'>
+                    <Tooltip content="Delete Widget" className="GridItem-DeleteButton" direction='right'>
                         <IconButton requireConfirm confirmColor='red' onClick={onDelete}>
                             <Icon name="trash" />
                         </IconButton>

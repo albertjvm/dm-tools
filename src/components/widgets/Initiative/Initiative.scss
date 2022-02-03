@@ -1,0 +1,10 @@
+.Initiative {
+    display: flex;
+    flex-direction: column;
+
+    .Initiative-Main {
+        flex: 1;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}

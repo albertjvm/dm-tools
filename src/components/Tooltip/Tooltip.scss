@@ -3,11 +3,11 @@ $background-color: rgba(0,0,0, .7);
 $margin: 10px;
 $arrow-size: 6px;
 
-.Tooltip--Wrapper {
+.Tooltip-Wrapper {
     display: inline-block;
     position: relative;
 
-    .Tooltip--Tip {
+    .Tooltip-Tip {
         position: absolute;
         border-radius: 4px;
         left: 50%;

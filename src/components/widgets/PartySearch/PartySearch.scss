@@ -1,0 +1,29 @@
+.PartySearch {
+    .PartySearch-Header {
+        display: flex;
+        flex-direction: row;
+        padding: 8px;
+        justify-content: space-between;
+        .IconButton.toggled {
+            .Icon {
+                color: rgba(0,0,0, .8);
+            }
+        }
+    }
+
+    .PartySearch-Row {
+        display: flex;
+        flex-direction: row;
+        color: white;
+        font-weight: bold;
+
+        h3 {
+            font-variant: small-caps;
+        }
+
+        & > * {
+            flex: 1;
+            text-align: center;
+        }
+    }
+}

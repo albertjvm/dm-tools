@@ -1,9 +1,0 @@
-.SkillsModal {
-    width: 450px;
-
-    .SkillsModal--Grid {
-        display: grid;
-        grid-auto-flow: column;
-        grid-template-rows: repeat(6, 1fr);
-    }
-}

@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
-import { Dropdown, Icon, IconButton, PartyModal, Tooltip } from '..';
+import { Dropdown, Icon, IconButton, Tooltip } from '..';
+import { PartyModal, SettingsModal } from '../modals';
 import { createNewWidget } from '../../db';
 import { ModalContext } from '../../context';
 import './Toolbar.scss';
-import { SettingsModal } from '../SettingsModal';
 
 export const Toolbar = ({ toggleEditAll, editAll }) => {
     const { pushModal } = useContext(ModalContext);
@@ -61,6 +61,7 @@ export const Toolbar = ({ toggleEditAll, editAll }) => {
                 <IconButton title="Party Search" onClick={() => createWidget('partysearch')}><Icon name="users" />&nbsp;Party Search</IconButton>
                 <IconButton title="Damage Tracker" onClick={() => createWidget('damagetracker')}><Icon name="skull-crossbones" />&nbsp;Damage Tracker</IconButton>
                 <IconButton title="Word Generator" onClick={() => createWidget('wordgenerator')}><Icon name="font" />&nbsp;Name Generator</IconButton>
+                <IconButton title="Rollable Table" onClick={() => createWidget('rollabletable')}><Icon name="table" />&nbsp;Rollable Table</IconButton>
             </Dropdown>
             <Tooltip content="Edit Layout" direction='right'>
                 <IconButton onClick={toggleEditAll} toggled={editAll} >
