@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
-import { DamageTracker, Iframe, Initiative, PartySearch, WordGenerator, RollableTable } from '..';
+import { DamageTracker, Iframe, Initiative, PartySearch, WordGenerator, RollableTable, Notes } from '..';
 import './Widget.scss';
 import { TextInput } from '../..';
 
@@ -55,7 +55,8 @@ export const Widget = ({ id, name, type, data }) => {
         damagetracker: DamageTracker,
         wordgenerator: WordGenerator,
         iframe: Iframe,
-        rollabletable: RollableTable
+        rollabletable: RollableTable,
+        notes: Notes
     };
 
     const ChildWidget = WIDGETS[type] || 'div';

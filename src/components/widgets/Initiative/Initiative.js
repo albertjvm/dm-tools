@@ -83,9 +83,9 @@ export const Initiative = ({id, current = null, updateWidget}) => {
 
     return (
         <div className="Initiative">
-            <div className="Initiative-Main">
+            <main className="Initiative-Main">
                 {displayItems().map(({...item}, i) => <InitiativeItem key={`ii-${i}`} {...item} />)}
-            </div>
+            </main>
             <footer>
                 <IconButton onClick={advance}><Icon name="angle-double-right" /></IconButton>
                 <div style={{flex: 1}} />

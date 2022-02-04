@@ -62,6 +62,7 @@ export const Toolbar = ({ toggleEditAll, editAll }) => {
                 <IconButton title="Damage Tracker" onClick={() => createWidget('damagetracker')}><Icon name="skull-crossbones" />&nbsp;Damage Tracker</IconButton>
                 <IconButton title="Word Generator" onClick={() => createWidget('wordgenerator')}><Icon name="font" />&nbsp;Name Generator</IconButton>
                 <IconButton title="Rollable Table" onClick={() => createWidget('rollabletable')}><Icon name="table" />&nbsp;Rollable Table</IconButton>
+                <IconButton title="Notes" onClick={() => createWidget('notes')}><Icon name="book" />&nbsp;Notes</IconButton>
             </Dropdown>
             <Tooltip content="Edit Layout" direction='right'>
                 <IconButton onClick={toggleEditAll} toggled={editAll} >

@@ -12,6 +12,10 @@ export const WordGenerator = ({updateWidget, count}) => {
         );
     };
 
+    const handleClickWord = (w) => {
+        navigator.clipboard.writeText(w);
+    };
+
     const handleChange = (value) => {
         updateWidget({
             count: value
@@ -22,7 +26,13 @@ export const WordGenerator = ({updateWidget, count}) => {
         <div className='WordGenerator'>
             <main>
                 {words.map((w, i) => (
-                    <div key={`word-${i}`} className='WordGenerator-Row'>{w}</div>
+                    <div
+                        key={`word-${i}`}
+                        className='WordGenerator-Row'
+                        onClick={() => handleClickWord(w)}
+                    >
+                        {w}
+                    </div>
                 ))}
             </main>
             <footer>

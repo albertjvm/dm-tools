@@ -9,6 +9,15 @@
                 color: rgba(0,0,0, .8);
             }
         }
+
+        .PartySearch-SearchIcon {
+            position: absolute;
+            top: 17px;
+            left: 17px;
+        }
+        .TextInput input {
+            padding-left: 32px;
+        }
     }
 
     .PartySearch-Row {

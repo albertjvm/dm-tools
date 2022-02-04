@@ -123,6 +123,7 @@ export const PartySearch = ({ activeSearch = '', updateWidget }) => {
     return (
         <div className='PartySearch'>
             <header className='PartySearch-Header'>
+                <Icon name="search" className='PartySearch-SearchIcon' />
                 <TextInput
                     value={activeSearch}
                     onChange={setSearch}

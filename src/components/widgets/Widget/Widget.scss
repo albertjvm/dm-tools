@@ -34,7 +34,11 @@
         }
     }
 
-    footer {
+    main::-webkit-scrollbar {
+        display: none;
+    }
+
+    header, footer {
         display: flex;
         flex-direction: row;
 

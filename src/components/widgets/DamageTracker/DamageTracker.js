@@ -40,9 +40,9 @@ export const DamageTracker = ({id}) => {
 
     return (
         <div className="DamageTracker">
-            <div className="DamageTracker-Main">
+            <main className="DamageTracker-Main">
                 {items.map(({...item}, i) => <DamageItem key={`di-${i}`} {...item} />)}
-            </div>
+            </main>
             <footer>
                 <div style={{flex: 1}} />
                 <IconButton onClick={addItem}><Icon name="plus" /></IconButton>

@@ -51,7 +51,7 @@ export const RollableTable = ({updateWidget, items = []}) => {
         <div className='RollableTable'>
             <main>
                 {items.map((item, i) => (
-                    <div className='RollableTable-Row'>
+                    <div className='RollableTable-Row' key={`rollItem-${i}`} >
                         <TextInput
                             className={i === highlightIndex ? 'highlight' : ''}
                             value={item}

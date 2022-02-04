@@ -1,0 +1,76 @@
+.Notes {
+    display: flex;
+    flex-direction: column;
+
+    header {
+        .Notes-SearchIcon {
+            position: absolute;
+            top: 17px;
+            left: 17px;
+        }
+
+        .TextInput input {
+            padding-left: 32px;
+        }
+
+        .Dropdown {
+            width: 225px;
+
+            span {
+                cursor: pointer;
+                color: white;
+                padding: 8px;
+                font-weight: bold;
+                &:hover {
+                    background-color: rgba($color: white, $alpha: .1);
+                }
+            }
+        }
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        font-weight: bold;
+        
+        .Notes-NoteList {
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .TextInput input {
+            background-color: transparent;
+            backdrop-filter: none;
+            border-radius: 0;
+            font-size: xx-large;
+        }
+
+        .Notes-Text, textarea {
+            flex: 1;
+            width: 100%;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: medium;
+            font-weight: bold;
+            resize: none;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            padding: 8px;
+            white-space: pre-wrap;
+        }
+
+        .Notes-Link {
+            text-decoration: underline;
+            cursor: pointer;
+            &:hover {
+                color: rgba($color: white, $alpha: .8)
+            }
+        }
+    }
+}
