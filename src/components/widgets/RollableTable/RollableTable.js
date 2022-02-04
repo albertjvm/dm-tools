@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Icon, IconButton, TextInput } from '../..';
 import './RollableTable.scss';
 
 export const RollableTable = ({updateWidget, items = []}) => {
     const [highlightIndex, setHighlightIndex] = useState(null);
+    const refs = items.map(item => React.createRef());
 
     const handleRoll = () => {
-        setHighlightIndex(
-            Math.floor(Math.random() * items.length)
-        );
+        const index = Math.floor(Math.random() * items.length);
+        setHighlightIndex(index);
+        refs[index].current.scrollIntoView({behavior: "smooth"});
     };
 
     const handleDeleteAll = () => {
@@ -51,7 +52,11 @@ export const RollableTable = ({updateWidget, items = []}) => {
         <div className='RollableTable'>
             <main>
                 {items.map((item, i) => (
-                    <div className='RollableTable-Row' key={`rollItem-${i}`} >
+                    <div
+                        className='RollableTable-Row' 
+                        key={`rollItem-${i}`}
+                        ref={refs[i]}
+                    >
                         <TextInput
                             className={i === highlightIndex ? 'highlight' : ''}
                             value={item}

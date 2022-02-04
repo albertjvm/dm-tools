@@ -2,6 +2,8 @@
     z-index: 1;
     position: relative;
     background-color: rgba(255,255,255, 0.1);
+    border: 2px solid rgba(255,255,255, 0.2);
+    box-sizing: border-box;
     backdrop-filter: blur(10px);
     & > * {
         height: 100%;

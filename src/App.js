@@ -4,6 +4,7 @@ import './App.css';
 import { Header, Home } from './components';
 import { AuthProvider, ModalProvider, SettingsProvider } from './context';
 import { PartyProvider } from './context/PartyContext';
+import { ToastProvider } from './context/ToastContext';
 
 const App = () => {
   return (
@@ -11,14 +12,16 @@ const App = () => {
       <SettingsProvider>
         <ModalProvider>
           <PartyProvider>
-            <main className="App">
-              <Header />
-              <Switch>
-                <Route path="/" exact render={(props) => (
-                  <Home {...props} />
-                )} />
-              </Switch>
-            </main>
+            <ToastProvider>
+              <main className="App">
+                <Header />
+                <Switch>
+                  <Route path="/" exact render={(props) => (
+                    <Home {...props} />
+                  )} />
+                </Switch>
+              </main>
+            </ToastProvider>
           </PartyProvider>
         </ModalProvider>
       </SettingsProvider>

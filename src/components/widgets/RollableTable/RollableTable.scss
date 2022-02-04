@@ -1,6 +1,7 @@
 .RollableTable {
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
 
     main {
         flex: 1;

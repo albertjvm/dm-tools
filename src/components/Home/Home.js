@@ -5,6 +5,7 @@ import { Grid, GridItem, Toolbar } from '../../components';
 import { Widget } from '../../components/widgets';
 import { AuthContext, ModalContext, SettingsContext } from '../../context';
 import { updateWidgetConfig } from '../../db';
+import { Snackbar } from '../Snackbar/Snackbar';
 
 export const Home = () => {
     const { isLoggedIn, user } = useContext(AuthContext);
@@ -76,6 +77,7 @@ export const Home = () => {
                             }
                         </Grid>
                     </div>
+                    <Snackbar />
                     {modalStack}
                 </>
             : null}
