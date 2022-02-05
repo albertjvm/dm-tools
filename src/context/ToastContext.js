@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const ToastContext = React.createContext();
 
 export const ToastProvider = ({ children }) => {
-    const [ snack, setSnack ] = useState([]);
+    const [ snack, setSnack ] = useState('');
 
     const toast = (value, delay = 3000) => {
         setSnack(value);

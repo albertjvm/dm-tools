@@ -4,6 +4,7 @@ import './Snackbar.scss';
 
 export const Snackbar = () => {
     const { snack } = useContext(ToastContext);
+
     return (
         <div className={`Snackbar${snack ? ' show' : ''}`}>
             {snack}
