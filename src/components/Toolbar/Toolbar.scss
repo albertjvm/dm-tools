@@ -11,4 +11,24 @@
     & > * {
         margin-right: 8px;
     }
+
+    .CampaignButton {
+        font-weight: bold;
+        font-size: medium;
+        padding: 8px;
+        cursor: pointer;
+        color: white;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        &:hover {
+            color: rgba(white, .5);
+        }
+    }
+
+    h3 {
+        margin: 0;
+        color: white;
+        margin-right: 8px;
+    }
 }

@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import firebase from 'firebase/app';
-import { AuthContext } from '.';
+import { CampaignContext } from '.';
 
 export const PartyContext = React.createContext();
 
 export const PartyProvider = ({ children }) => {
-    const { user } = useContext(AuthContext);
+    const { activeCampaign } = useContext(CampaignContext);
     const [ party, setParty ] = useState([]);
 
     useEffect(() => {
-        if (user) {
+        if (activeCampaign) {
             const unsubscribe = firebase
                 .firestore()
                 .collection('partyMembers')
-                .where('userId', '==', user?.uid)
+                .where('campaignId', '==', activeCampaign?.id)
                 .onSnapshot(
                     snapshot => {
                         setParty(snapshot.docs.map(doc => ({
@@ -25,7 +25,7 @@ export const PartyProvider = ({ children }) => {
 
             return () => unsubscribe();
         }
-    }, [user]);
+    }, [activeCampaign]);
 
     const member = (id) => party.find(p => p.id === id);
 

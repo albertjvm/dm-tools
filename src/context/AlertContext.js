@@ -13,7 +13,7 @@ export const AlertProvider = ({ children }) => {
             .doc('main')
                 .onSnapshot(
                     doc => {
-                        setAlert(doc.data().text)
+                        setAlert(doc.data()?.text)
                     }
                 );
 

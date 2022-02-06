@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Tooltip.scss';
 
-export const Tooltip = ({ children, className, content, delay = 400, direction = 'top' }) => {
+export const Tooltip = ({ children, className = '', content, delay = 400, direction = 'top' }) => {
     let timeout;
     const [active, setActive] = useState(false);
 

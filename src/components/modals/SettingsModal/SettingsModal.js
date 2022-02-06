@@ -1,10 +1,9 @@
-import firebase from 'firebase/app';
 import { Modal } from '..';
 import { TextInput } from '../..';
 import './SettingsModal.scss';
 import { RgbStringColorPicker as ColorPicker } from 'react-colorful';
 import { useContext } from 'react';
-import { AuthContext, SettingsContext } from '../../../context';
+import { SettingsContext } from '../../../context';
 
 const BACKGROUND_TYPES = {
     COLOR: 'color',
@@ -12,14 +11,7 @@ const BACKGROUND_TYPES = {
 };
 
 export const SettingsModal = () => {
-    const { user } = useContext(AuthContext);
-    const { settings } = useContext(SettingsContext);
-
-    const updateSettings = ({ key, value }) => {
-        firebase.firestore().collection('settings').doc(user?.uid).set({
-            [key]: value
-        }, {merge: true});
-    };
+    const { settings, updateSettings } = useContext(SettingsContext);
 
     const handleTypeChange = e => {
         const { name, value, checked } = e.target;

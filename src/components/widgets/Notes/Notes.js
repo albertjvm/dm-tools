@@ -2,10 +2,10 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import firebase from 'firebase/app';
 import { Dropdown, Icon, IconButton, TextInput } from '../..';
 import './Notes.scss';
-import { AuthContext } from '../../../context';
+import { CampaignContext } from '../../../context';
 
 export const Notes = () => {
-    const { user } = useContext(AuthContext);
+    const { activeCampaign } = useContext(CampaignContext);
 
     const textareaRef = useRef(null);
     const [searchValue, setSearchValue] = useState('');
@@ -18,11 +18,11 @@ export const Notes = () => {
     const [tempText, setTempText] = useState('');
 
     useEffect(() => {
-        if (user) {
+        if (activeCampaign) {
             const unsubscribe = firebase
                 .firestore()
                 .collection('noteLists')
-                .doc(user.uid)
+                .doc(activeCampaign.id)
                 .onSnapshot(
                     doc => {
                         if (doc.exists) {
@@ -33,7 +33,7 @@ export const Notes = () => {
 
             return () => unsubscribe();
         }
-    }, [user]);
+    }, [activeCampaign]);
 
     useEffect(() => {
         if (noteId) {
@@ -52,17 +52,21 @@ export const Notes = () => {
     }, [noteId]);
 
     useEffect(() => {
+        setNoteId(null);
+    }, [noteList]);
+
+    useEffect(() => {
         setTempText(note?.text || '');
     }, [noteId, note?.text]);
 
     const newNote = (data = {}) => {
         setSearchValue('');
         firebase.firestore().collection('notes').add({
-            userId: user.uid,
+            campaignId: activeCampaign.id,
             ...data
         }).then(docRef => {
             setNoteId(docRef.id);
-            firebase.firestore().collection('noteLists').doc(user.uid).set({
+            firebase.firestore().collection('noteLists').doc(activeCampaign.id).set({
                 notes: [
                     ...noteList.notes,
                     { id: docRef.id, title: data?.title || '' }
@@ -73,7 +77,7 @@ export const Notes = () => {
 
     const handleDelete = () => {
         firebase.firestore().collection('notes').doc(noteId).delete().then(() => {
-            firebase.firestore().collection('noteLists').doc(user.uid).update({
+            firebase.firestore().collection('noteLists').doc(activeCampaign.id).update({
                 notes: [
                     ...(noteList.notes.filter(({id}) => id !== noteId))
                 ]
@@ -87,7 +91,7 @@ export const Notes = () => {
         if (noteId) {
             firebase.firestore().collection('notes').doc(noteId).update(data);
             if (data.title) {
-                firebase.firestore().collection('noteLists').doc(user.uid).update({
+                firebase.firestore().collection('noteLists').doc(activeCampaign.id).update({
                     notes: [
                         ...(noteList.notes.filter(({id}) => id !== noteId)),
                         { id: noteId, title: data.title }

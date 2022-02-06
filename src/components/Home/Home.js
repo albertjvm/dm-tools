@@ -3,23 +3,24 @@ import firebase from 'firebase/app';
 import './Home.scss';
 import { Grid, GridItem, Toolbar } from '../../components';
 import { Widget } from '../../components/widgets';
-import { AuthContext, ModalContext, SettingsContext } from '../../context';
+import { AuthContext, CampaignContext, ModalContext, SettingsContext } from '../../context';
 import { updateWidgetConfig } from '../../db';
 import { Snackbar } from '../Snackbar/Snackbar';
 
 export const Home = () => {
-    const { isLoggedIn, user } = useContext(AuthContext);
+    const { isLoggedIn } = useContext(AuthContext);
+    const { activeCampaign } = useContext(CampaignContext);
     const { modalStack } = useContext(ModalContext);
     const { settings = {} } = useContext(SettingsContext);
     const [widgets, setWidgets] = useState([]);
     const [editAll, setEditAll] = useState(false);
 
     useEffect(() => {
-        if(isLoggedIn && user) {
+        if(activeCampaign) {
             const unsubscribe = firebase
                 .firestore()
                 .collection('widgets')
-                .where('userId', '==', user?.uid)
+                .where('campaignId', '==', activeCampaign?.id)
                 .onSnapshot(
                     snapshot => {
                         setWidgets(snapshot.docs.map(doc => ({
@@ -31,7 +32,7 @@ export const Home = () => {
 
             return () => unsubscribe();
         }
-    }, [isLoggedIn, user]);
+    }, [activeCampaign]);
 
     const deleteWidget = (id) => {
         firebase

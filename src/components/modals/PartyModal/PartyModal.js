@@ -3,18 +3,18 @@ import firebase from 'firebase/app';
 import { Icon, IconButton, Table, TextInput } from '../..';
 import { Modal, FeatsModal, SavingThrowsModal, SkillsModal, VitalsModal } from '..';
 import './PartyModal.scss';
-import { AuthContext, ModalContext, PartyContext } from '../../../context';
+import { CampaignContext, ModalContext, PartyContext } from '../../../context';
 import { ABILITIES } from '../../../data';
 
 export const PartyModal = () => {
-    const { user } = useContext(AuthContext);
+    const { activeCampaign } = useContext(CampaignContext);
     const { pushModal } = useContext(ModalContext);
     const { party } = useContext(PartyContext);
 
     const addPartyMember = () => {
         firebase.firestore().collection('partyMembers')
             .add({
-                userId: user.uid,
+                campaignId: activeCampaign.id,
                 name: 'Party Member',
                 createdAt: Date.now()
             });

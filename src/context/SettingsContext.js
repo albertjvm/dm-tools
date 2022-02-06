@@ -6,11 +6,13 @@ export const SettingsContext = React.createContext();
 
 export const SettingsProvider = ({ children }) => {
     const { user } = useContext(AuthContext);
-    const [ settings, setSettings ] = useState({
-        backgroundType: 'color',
-        color1: 'rgb(0, 0, 0)',
-        color2: 'rgb(0, 0, 0)'
-    });
+    const [ settings, setSettings ] = useState({});
+
+    const updateSettings = ({ key, value }) => {
+        firebase.firestore().collection('settings').doc(user?.uid).set({
+            [key]: value
+        }, {merge: true});
+    };
 
     useEffect(() => {
         if (user) {
@@ -30,7 +32,8 @@ export const SettingsProvider = ({ children }) => {
 
     return (
         <SettingsContext.Provider value={{ 
-            settings
+            settings,
+            updateSettings
          }}>
              {children}
         </SettingsContext.Provider>
