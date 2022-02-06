@@ -138,17 +138,25 @@ export const PartySearch = ({ activeSearch = '', updateWidget }) => {
                 </IconButton>
             </header>
 
-            <div className='PartySearch-Row'>
-                <h3>Name</h3>
-                <h3>{title}</h3>
-            </div>
+            {party.length ? 
+                <>
+                    <div className='PartySearch-Row'>
+                        <h3>Name</h3>
+                        <h3>{title}</h3>
+                    </div>
 
-            {sortedParty().map((member, i) => (
-                <div className='PartySearch-Row' key={`party-search-${i}`}>
-                    <div>{member.name}</div>
-                    <div>{getSearchValue(member)}</div>
-                </div>
-            ))}
+                    {sortedParty().map((member, i) => (
+                        <div className='PartySearch-Row' key={`party-search-${i}`}>
+                            <div>{member.name}</div>
+                            <div>{getSearchValue(member)}</div>
+                        </div>
+                    ))}
+                </>
+                :
+                <div className='PartySearch-Row'>
+                        <h3>Use the <Icon name="users" /> button in the toolbar to configure your party.</h3>
+                    </div>
+            }
         </div>
     );
 };
