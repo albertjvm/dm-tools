@@ -79,27 +79,31 @@ export const PartyModal = () => {
 
     return (
         <Modal className="PartyModal">
-            <h3>Party time!</h3>
+            <h2>Party time!</h2>
 
-            <Table 
-                actions={[
-                    { icon: 'heartbeat', title: 'Vitals', onClick: handleVitalsClick },
-                    { icon: 'running', title: 'Skills', onClick: handleSkillsClick },
-                    { icon: 'save', title: 'Saves', onClick: handleSavesClick },
-                    { icon: 'trophy', title: 'Feats', onClick: handleFeatsClick },
-                    { icon: 'trash', requireConfirm: true, onClick: ({id}) => deletePartyMember(id) }
-                ]}
-                columns={[
-                    { name: 'name', flex: 2, render: ({id, name}) => (
-                        <TextInput value={name} onChange={value => updatePartyMember({id, key: 'name', value})}/>
-                    )},
-                    { name: 'level', render: ({id, level = 1}) => (
-                        <TextInput value={level} type="number" onChange={value => updatePartyMember({id, key: 'level', value})}/>
-                    )},
-                    ...ABILITIES.map(({shortName}) => abilityColumn(shortName))
-                ]}
-                data={party.sort(({createdAt: a}, {createdAt: b}) => a - b)}
-            />
+            {party.length ? 
+                <Table 
+                    actions={[
+                        { icon: 'heartbeat', title: 'Vitals', onClick: handleVitalsClick },
+                        { icon: 'running', title: 'Skills', onClick: handleSkillsClick },
+                        { icon: 'save', title: 'Saves', onClick: handleSavesClick },
+                        { icon: 'trophy', title: 'Feats', onClick: handleFeatsClick },
+                        { icon: 'trash', requireConfirm: true, onClick: ({id}) => deletePartyMember(id) }
+                    ]}
+                    columns={[
+                        { name: 'name', flex: 2, render: ({id, name}) => (
+                            <TextInput value={name} onChange={value => updatePartyMember({id, key: 'name', value})}/>
+                        )},
+                        { name: 'level', render: ({id, level = 1}) => (
+                            <TextInput value={level} type="number" onChange={value => updatePartyMember({id, key: 'level', value})}/>
+                        )},
+                        ...ABILITIES.map(({shortName}) => abilityColumn(shortName))
+                    ]}
+                    data={party.sort(({createdAt: a}, {createdAt: b}) => a - b)}
+                />
+            : 
+                <h3>Click <Icon name="plus"/> to add you first party member.</h3>
+            }
 
             <footer>
                 <IconButton onClick={addPartyMember}><Icon name="plus" /></IconButton>

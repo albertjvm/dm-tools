@@ -31,6 +31,8 @@ export const Home = () => {
                 );
 
             return () => unsubscribe();
+        } else {
+            setWidgets([]);
         }
     }, [activeCampaign]);
 
