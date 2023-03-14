@@ -1,9 +1,0 @@
-.SavingThrowsModal {
-    width: 350px;
-
-    .SavingThrowsModal-Grid {
-        display: grid;
-        grid-auto-flow: column;
-        grid-template-rows: repeat(3, 1fr);
-    }
-}

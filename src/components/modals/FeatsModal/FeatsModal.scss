@@ -1,9 +1,0 @@
-.FeatsModal {
-    width: 350px;
-
-    .FeatsModal-Grid {
-        display: grid;
-        grid-auto-flow: column;
-        grid-template-rows: repeat(3, 1fr);
-    }
-}
