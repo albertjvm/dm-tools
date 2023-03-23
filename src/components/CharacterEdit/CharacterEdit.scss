@@ -1,0 +1,53 @@
+.CharacterEdit {
+    width: 100%;
+
+    .Row {
+        width: 100%;
+        justify-content: center;
+        gap: 0;
+    }
+
+    h3 {
+        text-align: center;
+        text-transform: lowercase;
+        font-variant: small-caps;
+    }
+
+    input {
+        height: 3rem;
+        font-size: x-large;
+        padding: 0 1rem;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .abilities {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .skills {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        h3 {
+            flex: 1;
+        }
+    }
+
+    .saves {
+        input {
+            margin-right: .5rem;
+        }
+    }
+
+    .skills, .saves {
+        h3 {
+            margin: 0;
+        }
+        input {
+            width: 2rem;
+            margin-left: .5rem;
+        }
+    }
+}

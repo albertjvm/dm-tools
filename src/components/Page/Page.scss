@@ -1,0 +1,44 @@
+.Page {
+    flex: 1;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+
+    hr {
+        width: 66%;
+    }
+
+    .Button {
+        margin: 10px 0;
+    }
+
+    header {
+        display: flex;
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+
+        h1,h2 {
+            flex: 1;
+            margin: 0;
+        }
+    }
+
+    h2 {
+        text-align: center;
+        margin: 0;
+        padding: .5rem 0;
+        font-size: xx-large;
+        user-select: none;
+    }
+}
+
+.DarkMode {
+    .Page {
+        background-color: black;
+        color: white;
+    }
+}

@@ -1,0 +1,47 @@
+.SearchInput {
+    flex: 1;
+    position: relative;
+    padding: .25rem 1rem;
+    border: 2px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin: .5rem 0;
+
+    input {
+        box-sizing: border-box;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: .5rem;
+        font-size: xx-large;
+        font-weight: bold;
+        background-color: transparent;
+    }
+
+    button {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        width: 50px;
+        font-size: large;
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.DarkMode {
+    .SearchInput {
+
+        input {
+            color: white;
+
+            &::placeholder {
+                color: #888;
+            }
+        }
+
+        button {
+            color: white;
+        }
+    }
+}

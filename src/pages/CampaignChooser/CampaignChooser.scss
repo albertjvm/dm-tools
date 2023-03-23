@@ -1,0 +1,11 @@
+.CampaignChooser {
+    justify-content: flex-start;
+
+    .campaign {
+        padding: .5rem 1rem;
+        font-size: large;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid black;
+    }
+}

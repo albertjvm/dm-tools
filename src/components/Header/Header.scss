@@ -1,0 +1,50 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem;
+
+    h1 {
+        margin: 0;
+    }
+
+    .Select {
+        margin: 0 1rem;
+    }
+
+    a {
+        &.title {
+            flex: 1;
+        }
+        text-decoration: none;
+        color: black;
+        user-select: none;
+        display: flex;
+        flex-direction: row;        
+    }
+
+    .Icon {
+        &.fa-hammer, &.fa-gear {
+            margin-right: 1rem;
+        }
+    }
+
+    & > .Row {
+        width: 100%;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #ccc;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+}
+
+.DarkMode {
+    .Header {
+        background-color: black;
+        a, .Icon {
+            color: white;
+        }
+    }
+}
