@@ -53,7 +53,7 @@ export const processSearchTokens = (tokens) => {
                     title: `${ability} save`, 
                     getSearchValue: member => {
                         if (!member?.saves) return '-';
-                        const prof = member.saves[ability.shortName] || 0;
+                        const prof = member.saves[ability.slice(0, 3)] || 0;
                         const mod = scoreToMod(member.abilities[ability.slice(0, 3)], prof, member.level);
                         return `${mod < 0 ? mod : `+${mod}`}${new Array(prof).fill('*').join('')}`;
                     },
